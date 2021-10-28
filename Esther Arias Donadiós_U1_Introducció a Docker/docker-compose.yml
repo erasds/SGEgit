@@ -1,0 +1,53 @@
+# Primero indicamos la versión del docker-compose, aunque no es obligatorio.
+version: '2'
+# Indicamos los servicios a lanzar:
+services:
+  # Plantilla del servicio "mariadb" (primer contenedor).
+  mariadb:
+    # Basada en la versión 10.5 de la imagen "mariadb".
+    image: docker.io/bitnami/mariadb:10.5
+    # Definimos un conjunto de variables de entorno para los contenedores, 
+    # permitiendo conectarse sin password, indicando el nombre de usuario, 
+    # nombre de la base de datos, y los caracteres de codificación.
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_moodle
+      - MARIADB_DATABASE=bitnami_moodle
+      - MARIADB_CHARACTER_SET=utf8mb4
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
+    # Mapea el volumen "mariadb_data" en el directorio /bitnami/mariadb que dará persistencia al contenido
+    volumes:
+      - 'mariadb_data:/bitnami/mariadb'
+  # Plantilla del servicio moodle (segundo contenedor).
+  moodle:
+    # Basada en la versión 3 de la imagen "moodle".
+    image: docker.io/bitnami/moodle:3
+    # Indicamos que el puerto 8080 del primer contenedor se mapea con el puerto 80 del anfitrión.
+    # Y el puerto 8443 del segundo contenedor, con el 443 del anfitrión.
+    ports:
+      - '80:8080'
+      - '443:8443'
+    # Volvemos a definir variables de entorno para el segundo contenedor,
+    # indicamos el host de la base de datos de moodle, el número de puerto, el usuario,
+    # el nombre de la base de datos, y permitimos conectarse sin introducir password.
+    environment:
+      - MOODLE_DATABASE_HOST=mariadb
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=bn_moodle
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - ALLOW_EMPTY_PASSWORD=yes
+    # Mapea los volúmenes "moodle_data" y "moodledata_data", en los directorios /bitnami/moodle y /bitnami/moodledata respectivamente.
+    volumes:
+      - 'moodle_data:/bitnami/moodle'
+      - 'moodledata_data:/bitnami/moodledata'
+    # Indicamos que para lanzar el contenedor de moodle, ha de estar en marcha el de la base de datos.
+    depends_on:
+      - mariadb
+# Por último, indicamos los volúmenes creados y compartidos a lo largo del fichero.
+volumes:
+  mariadb_data:
+    driver: local
+  moodle_data:
+    driver: local
+  moodledata_data:
+    driver: local
