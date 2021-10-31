@@ -1,8 +1,6 @@
 import random
 
 class Car:
-    matricula = 0
-    color = ""
 # Amb el constructor per defecte definim els atributs que tindran tots els objectes que es creen de la clase
     def __init__(self, matricula, color):
         self.matricula = matricula
