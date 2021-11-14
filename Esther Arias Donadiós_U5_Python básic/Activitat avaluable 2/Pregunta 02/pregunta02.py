@@ -200,7 +200,7 @@ def comprobarCajas(miSudoku):
 def esSudokuCorrecto(miArrayBi):
     # esta función realiza una llamada a las tres funciones que comprueban cada condición del sudoku, 
     # si las tres devuelven True entonces el sudoku es correcto
-    if comprobarFilas(sudoku) == True and comprobarColumnas(sudoku) == True and comprobarCajas(sudoku) == True:
+    if comprobarFilas(miArrayBi) == True and comprobarColumnas(miArrayBi) == True and comprobarCajas(miArrayBi) == True:
         return print("Es correcte")
     # solo con que una devuelva False sería incorrecto
     else:
