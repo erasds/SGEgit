@@ -17,14 +17,11 @@ def esPalindromo(fichero):
         numInvertido = ""
         numInvertido = numeros[num][::-1]
         numerosInvertidos.append(numInvertido)
-    print(numerosInvertidos)
     for i in range(len(numeros)):
         for j in range(len(numerosInvertidos)):
             if numeros[i] == numerosInvertidos[j]:
                 numsPalindromos.append(numeros[i])
-    print(numsPalindromos)
     numerosPalindromos = list(map(int, numsPalindromos))
-    print(numerosPalindromos)
     return numerosPalindromos
 
 def esPrimo(fichero):
