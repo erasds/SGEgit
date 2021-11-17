@@ -1,34 +1,55 @@
 import sys
 import os
+"""ACUERDATE!! comprobar con test unitari... ??? y sacar ejecutable"""
+# leemos el fichero de entrada, cuyo nombre hemos recibido por consola como primer parámetro
 
-fEntrada = open(sys.argv[0], "r")
+fEntrada = open(sys.argv[1], "r")
+fSalida = open(sys.argv[2], "w")
 
 
-def esPalindromo(num):
-    numerosPalindromos = []
-    numInvertido = 0
-    while num > 0:
-        digito = num % 10
-        numInvertido += 10
-        numInvertido += digito
-        num //= 10
-    if numInvertido == num:
-        numerosPalindromos.append(num)
+def esPalindromo(fichero):
+    numsPalindromos = []
+    numerosInvertidos = []
+    lineas = fichero.readlines()
+    lineas = [i.strip() for i in lineas]
+    numeros = list(map(str, lineas))
+    for num in range(len(numeros)):
+        numInvertido = ""
+        numInvertido = numeros[num][::-1]
+        numerosInvertidos.append(numInvertido)
+    print(numerosInvertidos)
+    for i in range(len(numeros)):
+        for j in range(len(numerosInvertidos)):
+            if numeros[i] == numerosInvertidos[j]:
+                numsPalindromos.append(numeros[i])
+    print(numsPalindromos)
+    numerosPalindromos = list(map(int, numsPalindromos))
+    print(numerosPalindromos)
     return numerosPalindromos
 
-
-def esPrimo(num):
+def esPrimo(fichero):
     numerosPrimos = []
-    for n in range(2, num):
-        if num % n != 0:
-            numerosPrimos.append(num)
+    numeros = fichero.readlines()
+    for i in range(len(numeros)):
+        if i > 2 and numeros[i] % i != 0:
+            numerosPrimos.append(numeros[i])
+    print(numerosPrimos)
     return numerosPrimos
 
-fSalida = open(sys.argv[1],"w")
-fSalida.write("Hay %s números palíndromos." % (len(numerosPalindromos)) + os.linesep)
-fSalida.write("Hay %s números primos." % (len(numerosPrimos)) + os.linesep)
 
+def imprimirResultado(ficheroSalida):
+    ficheroSalida = open(sys.argv[2],"w")
+    ficheroSalida.write("Hay %s números palíndromos." % (len(esPalindromo(fEntrada))) + os.linesep)
+    ficheroSalida.write("Hay %s números primos." % (len(esPrimo(fEntrada))) + os.linesep)
+    palindromosOrdenados = sorted(esPalindromo(fEntrada))
+    primosOrdenados = sorted(esPrimo(fEntrada))
+    for i in range(len(palindromosOrdenados)):
+        for j in range(len(primosOrdenados)):
+            if palindromosOrdenados[i] == primosOrdenados[j]:
+                ficheroSalida.write(palindromosOrdenados[i] + os.linesep)
+
+
+imprimirResultado(fSalida)
 
 fEntrada.close()
 fSalida.close()
-
