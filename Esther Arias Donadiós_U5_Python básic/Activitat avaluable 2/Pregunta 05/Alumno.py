@@ -22,3 +22,7 @@ class Alumno:
 
     def setProfeResponsable(self, profResp):
         self.profeResponsable = profResp
+
+alumno1 = Alumno("Esther", "Segundo", "Sergi")
+alumno2 = Alumno("Alvaro", "Primero", "David")
+alumno3 = Alumno("Pablo", "Seguno", "Oscar")

@@ -2,7 +2,14 @@ class Profesor:
     # definimos el constructor de la clase
     def __init__(self, nombre, tipo):
         self.nombre = nombre
-        self.tipo = tipo
+        if tipo == "Ciencias":
+            self.tipo = tipo
+        elif tipo == "Letras":
+            self.tipo = tipo
+        elif tipo == "Mixto":
+            self.tipo = tipo
+        else:
+            self.tipo = ""
     # definimos getters
     def getNombre(self): 
         return self.nombre
@@ -15,3 +22,8 @@ class Profesor:
 
     def setTipo(self, type):
         self.tipo = type
+
+
+profe1 = Profesor("Sergi", "Mixto")
+profe2 = Profesor("David", "Ciencias")
+profe3 = Profesor("Oscar", "Letras")
