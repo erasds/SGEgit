@@ -22,8 +22,3 @@ class Profesor:
 
     def setTipo(self, type):
         self.tipo = type
-
-
-profe1 = Profesor("Sergi", "Mixto")
-profe2 = Profesor("David", "Ciencias")
-profe3 = Profesor("Oscar", "Letras")
