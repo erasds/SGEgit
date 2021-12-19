@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='biblioteca_prestamos_action' model='ir.actions.act_window'>
+        <field name="name">Registro de préstamos</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">biblioteca.prestamos</field>
+        <!-- Indicamos que los comics pueden verse en tree para el listado,
+            y en form para la creación/edición -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <menuitem name="Mi biblioteca" id="biblioteca_base_menu" />
+    <menuitem name="Préstamos" id="biblioteca_prestamos_menu" parent="biblioteca_base_menu" action="biblioteca_prestamos_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="biblioteca_prestamos_view_form" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="comic_id"/>
+                    <field name="numeroEjemplar"/>
+                    <field name="socio_id"/>
+                </group>
+                <group>
+                    <field name="fecha_inicio_prestamo"/>
+                    <field name="fecha_fin_prestamo"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="biblioteca_prestamos_view_tree" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="comic_id"/>                      
+                <field name="socio_id"/>
+                <field name="fecha_inicio_prestamo"/>
+                <field name="fecha_fin_prestamo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="biblioteca_prestamos_view_search" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="comic_id"/>
+                <field name="numeroEjemplar"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>
