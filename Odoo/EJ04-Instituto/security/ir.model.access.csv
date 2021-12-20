@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_instituto,instituto.ciclos_default,model_instituto_ciclos,,1,1,1,1
+acl_instituto_modulos,instituto.modulos_default,model_instituto_modulos,,1,1,1,1
+acl_instituto_alumnos,instituto.alumnos_default,model_instituto_alumnos,,1,1,1,1
+acl_instituto_profesores,instituto.profesores_default,model_instituto_profesores,,1,1,1,1
