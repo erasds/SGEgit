@@ -35,6 +35,7 @@ class HospitalMedicos(models.Model):
     _order = 'nColegiado, nombre'
 
     #ATRIBUTOS
+    _rec_name = 'nombre'
     #Atributo nombre
     nombre = fields.Char('Nombre')
     #Atributo para seleccionar entre varios

@@ -10,6 +10,7 @@ class HospitalPacientes(models.Model):
     _order = 'apellidos, nombre'
 
     #ATRIBUTOS
+    _rec_name = 'nombre'
     nombre = fields.Char("Nombre")
     apellidos = fields.Char("Apellidos")
     #Campo con HTML (Sanitizado) donde se guardan los síntomas
