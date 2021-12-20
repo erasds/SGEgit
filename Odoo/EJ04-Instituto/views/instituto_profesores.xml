@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='instituto_profesores_action' model='ir.actions.act_window'>
+        <field name="name">Profesores del instituto</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">instituto.profesores</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <menuitem name="Instituto" id="instituto_base_menu" />
+    <menuitem name="Profesores" id="instituto_profesores_menu" parent="instituto_base_menu" action="instituto_profesores_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="instituto_profesores_view_form" model="ir.ui.view">
+        <field name="name">Profesores del instituto</field>
+        <field name="model">instituto.profesores</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                    muchos a muchos se vea en la interfaz como etiquetas -->
+                    <field name="nombre_profesor" />
+                    <field name="apellidos_profesor" />
+                    <field name="modulos_profesor"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="instituto_profesores_view_tree" model="ir.ui.view">
+        <field name="name">Lista de profesores del instituto</field>
+        <field name="model">instituto.profesores</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                muchos a muchos se vea en la interfaz como etiquetas -->
+                <field name="nombre_profesor" />
+                <field name="apellidos_profesor" />
+                <field name="modulos_profesor"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="instituto_profesores_view_search" model="ir.ui.view">
+        <field name="name">Profesores del instituto</field>
+        <field name="model">instituto.profesores</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre_profesor" />
+                <field name="apellidos_profesor" />
+                <field name="modulos_profesor"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>
