@@ -41,7 +41,7 @@
     </record>
 
     <!-- Vista busqueda-->
-    <record id="biblioteca_socio_view_search" model="ir.ui.view">
+    <record id="hospital_pacientes_view_search" model="ir.ui.view">
         <field name="name">Búsqueda de pacientes del Hospital</field>
         <field name="model">hospital.pacientes</field>
         <field name="arch" type="xml">
