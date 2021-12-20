@@ -10,6 +10,7 @@ class BibliotecaSocios(models.Model):
     _order = 'id, apellido, nombre_ids'
 
     #ATRIBUTOS
+    _rec_name = 'nombre_ids'
     nombre_ids = fields.Char("Nombre")
     apellido = fields.Char("Apellido")
     id = fields.Integer("Id")
