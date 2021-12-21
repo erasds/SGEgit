@@ -15,14 +15,8 @@ class InstitutoAlumnos(models.Model):
     _order = 'nombre_alumno, modulos_alumno'
 
     #ATRIBUTOS
-    _rec_name = 'combinacion'
+    _rec_name = 'nombre_alumno'
 
-    nombre_alumno = fields.Char("Nombre del alumno")
-    apellidos_alumno = fields.Char("Apellidos del alumno")
+    nombre_alumno = fields.Char("Nombre")
+    apellidos_alumno = fields.Char("Apellidos")
     modulos_alumno = fields.Many2many('instituto.modulos', string='Módulos en los que se ha matriculado')
-    combinacion = fields.Char(string='Combinacion', compute='_compute_fields_combinacion')
-
-    @api.depends('nombre_alumno', 'apellidos_alumno')
-    def _compute_fields_combinacion(self):
-        for record in self:
-            record.combinacion = record.nombre_alumno + ' ' + record.apellidos_alumno

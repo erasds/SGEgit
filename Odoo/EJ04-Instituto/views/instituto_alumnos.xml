@@ -25,7 +25,7 @@
                     muchos a muchos se vea en la interfaz como etiquetas -->
                     <field name="nombre_alumno" />
                     <field name="apellidos_alumno" />
-                    <field name="modulos_alumno"/>
+                    <field name="modulos_alumno" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -41,7 +41,7 @@
                 muchos a muchos se vea en la interfaz como etiquetas -->
                 <field name="nombre_alumno" />
                 <field name="apellidos_alumno" />
-                <field name="modulos_alumno"/>
+                <field name="modulos_alumno" widget="many2many_tags"/>
             </tree>
         </field>
     </record>

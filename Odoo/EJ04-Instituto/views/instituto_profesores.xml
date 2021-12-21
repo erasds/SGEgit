@@ -21,11 +21,13 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <!-- Utilizamos el Widget "many2many_tags" para que la relación
-                    muchos a muchos se vea en la interfaz como etiquetas -->
                     <field name="nombre_profesor" />
                     <field name="apellidos_profesor" />
-                    <field name="modulos_profesor"/>
+                    <field name="modulos_profesor">
+                        <tree>
+                            <field name='modulo'/>
+                        </tree>
+                    </field>
                 </group>
             </form>
         </field>
@@ -37,11 +39,13 @@
         <field name="model">instituto.profesores</field>
         <field name="arch" type="xml">
             <tree>
-                <!-- Utilizamos el Widget "many2many_tags" para que la relación
-                muchos a muchos se vea en la interfaz como etiquetas -->
                 <field name="nombre_profesor" />
                 <field name="apellidos_profesor" />
-                <field name="modulos_profesor"/>
+                <field name="modulos_profesor">
+                    <tree>
+                        <field name='modulo'/>
+                    </tree>
+                </field>
             </tree>
         </field>
     </record>

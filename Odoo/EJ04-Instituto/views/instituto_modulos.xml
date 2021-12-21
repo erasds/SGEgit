@@ -20,9 +20,9 @@
             <form>
                <group>
                     <field name="modulo" />
-                    <field name="ciclo_modulo" />
-                    <field name="alumnos_modulo" />
-                    <field name="profesores_modulo" />
+                    <field name="ciclo_modulo" widget="many2many_tags"/>
+                    <field name="alumnos_modulo" widget="many2many_tags"/>
+                    <field name="profesores_modulo"/>
                 </group>
             </form>
         </field>
@@ -35,9 +35,9 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="modulo" />
-                <field name="ciclo_modulo" />
-                <field name="alumnos_modulo" />
-                <field name="profesores_modulo" />
+                <field name="ciclo_modulo" widget="many2many_tags"/>
+                <field name="alumnos_modulo" widget="many2many_tags"/>
+                <field name="profesores_modulo"/>
             </tree>
         </field>
     </record>

@@ -23,7 +23,7 @@
             <form>
                 <group>
                     <field name="ciclo"/>
-                    <field name="modulos_ciclo"/>
+                    <field name="modulos_ciclo" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -35,8 +35,8 @@
         <field name="model">instituto.ciclos</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="ciclo"/>
-                <field name="modulos_ciclo"/>
+                <field name="ciclo" />
+                <field name="modulos_ciclo" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
