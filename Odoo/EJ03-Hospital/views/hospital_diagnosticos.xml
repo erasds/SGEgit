@@ -23,6 +23,7 @@
                 <group>
                     <!-- Utilizamos el Widget "many2many_tags" para que la relación
                     muchos a muchos se vea en la interfaz como etiquetas -->
+                    <field name="num_diagnostico"/>
                     <field name="nombreMedico_ids" widget="many2many_tags"/>
                     <field name="nombrePaciente_ids" widget="many2many_tags"/>
                     <field name="diagnostico"/>
@@ -39,6 +40,7 @@
             <tree>
                 <!-- Utilizamos el Widget "many2many_tags" para que la relación
                 muchos a muchos se vea en la interfaz como etiquetas -->
+                <field name="num_diagnostico"/>
                 <field name="nombreMedico_ids" widget="many2many_tags"/>
                 <field name="nombrePaciente_ids" widget="many2many_tags"/>
                 <field name="diagnostico"/>
@@ -52,6 +54,7 @@
         <field name="model">hospital.diagnosticos</field>
         <field name="arch" type="xml">
             <search>
+                <field name="num_diagnostico"/>
                 <field name="nombreMedico_ids"/>
                 <field name="nombrePaciente_ids"/>
             </search>
