@@ -7,7 +7,6 @@ from odoo.exceptions import ValidationError
 
 # Modelo base, creado como modelo abstracto 
 # Este modelo lo heredarara el modelo BibliotecaComic
-# Y se ha creado puramente con fin didáctico para ver herencia entre modelos
 class BaseArchive(models.AbstractModel):
     #Nombre y descripcion del modelo
     _name = 'base.archive'
@@ -16,9 +15,7 @@ class BaseArchive(models.AbstractModel):
     #Introduce el atributo "Activo"
     activo = fields.Boolean(default=True)
 
-    #Introducice metodo "archivar" que invierte el estado de "activo"
-    #Recordamos se recive "self" como el modelo entero y no como un registro,
-    #por ese motivo debemos iterar
+    #Introduce metodo "archivar" que invierte el estado de "activo"
     def archivar(self):
         #Por cada registro del modelo
         for record in self:
@@ -41,13 +38,9 @@ class BibliotecaComic(models.Model):
 
     #ATRIBUTOS
 
-    #PARA CUANDO NO HAY UN ATRIBUTO LLAMADO NAME PARA MOSTRAR NOMBRE DE UN REGISTRO
-    # https://www.odoo.com/es_ES/forum/ayuda-1/how-defined-display-name-in-custom-many2one-91657
-    
     #Indicamos que atributo sera el que se usara para mostrar nombre.
-    #Por defecto es "name", pero si no hay un atributo que se llama name, aqui lo indicamos
-    #Aqui indicamos que se use el atributo "nombre"
     _rec_name = 'nombre_ids'
+
     #Atributo nombre
     nombre_ids = fields.Char('Titulo', required=True, index=True)
     #Atributo para seleccionar entre varios
@@ -59,7 +52,7 @@ class BibliotecaComic(models.Model):
     #Campo con HTML (Sanitizado) donde se guarda la descripción del comic
     descripcion = fields.Html('Descripción', sanitize=True, strip_style=False)
     #Dato binario, para guardar un binario (en la vista indicaremos que es una imagen) con la portada del comic
-    portada = fields.Binary('Portada Comic')
+    portada = fields.Image('Portada Comic', max_width=200,max_height=200)
 
     #Fecha de publicación
     fecha_publicacion = fields.Date('Fecha publicación')
@@ -73,24 +66,22 @@ class BibliotecaComic(models.Model):
         groups='base.group_user',
         #Establece que si el estado es perdido, el numero de paginas no se puede cambiar
         estados={'perdido': [('readonly', True)]},
-        #Texto a mostrar en la ayuda de la interfaza al dejar el ratón encima
+        #Texto a mostrar en la ayuda de la interfaz al dejar el ratón encima
         help='Total numero de paginas',
-        #Si se pone a true, indica que si este atributo se aplica a distintas empreas en Odoo
-        #para cada empresa ponga un valor distintos
-        #Esta colocado con fin didactico a false 
+        #Si se pone a true, indica que si este atributo se aplica a distintas empresas en Odoo
+        #para cada empresa ponga un valor distinto
         company_dependent=False)
  
     #Valoración lector, indicando como son los datos
     valoracion_lector = fields.Float(
         'Valoración media lectores',
-        digits=(14, 4),  # Precision opcional (total, decimales),
+        digits=(14, 4),
     )
 
     ejemplares = fields.Integer('Número de ejemplares')
 
     # Relación muchos a muchos de autores utilizando un "partner"
     # de Odoo (Es un elemento que puede ser empresa o individuo)
-    # https://stackoverflow.com/questions/22927605/what-is-res-partner
     autor_ids = fields.Many2many('res.partner', string='Autores')
 
     #Constraints de SQL del modelo
