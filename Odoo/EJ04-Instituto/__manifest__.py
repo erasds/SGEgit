@@ -15,7 +15,7 @@ Instituto
     'depends': ['base'],
 
     'data': [
-        'security/groups.xml',
+        'security/instituto_security.xml',
         'security/ir.model.access.csv',
         #Cargamos las vistas
         'views/instituto_ciclos.xml',

@@ -10,7 +10,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <!-- Menu item -->
     <menuitem name="Instituto" id="instituto_base_menu" />
     <menuitem name="Profesores" id="instituto_profesores_menu" parent="instituto_base_menu" action="instituto_profesores_action"/>
 
@@ -23,11 +23,7 @@
                 <group>
                     <field name="nombre_profesor" />
                     <field name="apellidos_profesor" />
-                    <field name="modulos_profesor">
-                        <tree>
-                            <field name='modulo'/>
-                        </tree>
-                    </field>
+                    <field name="modulos_profesor" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -41,11 +37,7 @@
             <tree>
                 <field name="nombre_profesor" />
                 <field name="apellidos_profesor" />
-                <field name="modulos_profesor">
-                    <tree>
-                        <field name='modulo'/>
-                    </tree>
-                </field>
+                <field name="modulos_profesor" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -58,7 +50,6 @@
             <search>
                 <field name="nombre_profesor" />
                 <field name="apellidos_profesor" />
-                <field name="modulos_profesor"/>
             </search>
         </field>
     </record>

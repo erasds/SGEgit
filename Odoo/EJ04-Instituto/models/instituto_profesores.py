@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 
 class InstitutoProfesores(models.Model):
@@ -16,7 +15,8 @@ class InstitutoProfesores(models.Model):
 
     #ATRIBUTOS
     _rec_name = 'nombre_profesor'
-
+    # campos para indicar nombre y apellidos del profesor
     nombre_profesor = fields.Char("Nombre")
     apellidos_profesor = fields.Char("Apellidos")
-    modulos_profesor = fields.One2many('instituto.modulos', 'modulo', string='Módulos que imparte')
+    # campo Many2many donde podremos elegir varios módulos en caso de que el profesor imparta más de una asignatura
+    modulos_profesor = fields.Many2many('instituto.modulos', string='Módulos que imparte')

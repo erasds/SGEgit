@@ -10,7 +10,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <!-- Menu item -->
     <menuitem name="Instituto" id="instituto_base_menu" />
     <menuitem name="Alumnos" id="instituto_alumnos_menu" parent="instituto_base_menu" action="instituto_alumnos_action"/>
 

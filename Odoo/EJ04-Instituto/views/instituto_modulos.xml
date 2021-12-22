@@ -8,7 +8,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <!-- Menu item -->
     <menuitem name="Instituto" id="instituto_base_menu" />
     <menuitem name="Módulos" id="instituto_modulos_menu" parent="instituto_base_menu" action="instituto_modulos_action"/>
 
@@ -22,7 +22,7 @@
                     <field name="modulo" />
                     <field name="ciclo_modulo" widget="many2many_tags"/>
                     <field name="alumnos_modulo" widget="many2many_tags"/>
-                    <field name="profesores_modulo"/>
+                    <field name="profesores_modulo" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -37,7 +37,7 @@
                 <field name="modulo" />
                 <field name="ciclo_modulo" widget="many2many_tags"/>
                 <field name="alumnos_modulo" widget="many2many_tags"/>
-                <field name="profesores_modulo"/>
+                <field name="profesores_modulo" widget="many2many_tags"/>
             </tree>
         </field>
     </record>

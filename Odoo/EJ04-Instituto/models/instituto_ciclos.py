@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 
 # Modelo base, creado como modelo abstracto 
@@ -38,6 +37,6 @@ class InstitutoCiclos(models.Model):
     _rec_name = 'ciclo'
     #Atributo nombre
     ciclo = fields.Char('Ciclo formativo')
-    #Atributo para seleccionar entre varios
+    #Atributo para seleccionar entre los varios módulos, los que pertenecen a ese ciclo
     modulos_ciclo = fields.Many2many('instituto.modulos', string='Módulos')
 

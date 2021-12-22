@@ -11,7 +11,11 @@ class InstitutoModulos(models.Model):
 
     #ATRIBUTOS
     _rec_name = 'modulo'
+    #campo para indicar el nombre del módulo
     modulo = fields.Char("Módulo")
+    # campo many2many donde podemos elegir todos los ciclos donde se imparta ese módulo
     ciclo_modulo = fields.Many2many('instituto.ciclos', string="Ciclo formativo")
+    # campo many2many donde podemos elegir todos los alumnos matriculados en dicho módulo
     alumnos_modulo = fields.Many2many('instituto.alumnos', string='Alumnos matriculados')
-    profesores_modulo = fields.Many2one('instituto.profesores', string='Profesor del módulo')
+    # campo many2many donde podemos elegir al profesor que imparta la asignatura
+    profesores_modulo = fields.Many2many('instituto.profesores', string='Profesor del módulo')
