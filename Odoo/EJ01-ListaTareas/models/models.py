@@ -12,9 +12,6 @@ class lista_tareas(models.Model):
     _rec_name="tarea"
 
     #Elementos de cada fila del modelo de datos
-    #Los tipos de datos a usar en el ORM son 
-    # https://www.odoo.com/documentation/14.0/developer/reference/addons/orm.html#fields
-   
     tarea = fields.Char()
     prioridad = fields.Integer()
     #Indicamos que este valor es computado y se computara con la funcion "_value_urgente"
@@ -34,7 +31,7 @@ class lista_tareas(models.Model):
     #Funcion para calcular el valor de urgente.
     #Recibe "self" que se refiere al modelo completo (no a un registro solo)
     def _value_urgente(self):
-        #Para cada registro... (recordamos, self es el modelo, no un registro)
+        #Para cada registro...
         for record in self:
             #Si la prioridad es mayor que 10, se considera urgente, en otro caso no lo es
             if record.prioridad>10:
