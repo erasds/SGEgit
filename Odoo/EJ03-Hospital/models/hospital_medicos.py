@@ -43,7 +43,7 @@ class HospitalMedicos(models.Model):
     # Atributo que indica el numero de colegiado
     nColegiado = fields.Integer('Número de colegiado')
 
-    #Constraints de SQL del modelo
+    #Constraints de SQL del modelo que indica que el número de colegiado debe ser único
     _sql_constraints = [
         ('nColegiado_uniq', 'UNIQUE (nColegiado)', 'El número de colegiado debe ser único.')
     ]

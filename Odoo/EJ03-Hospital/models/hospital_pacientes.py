@@ -11,6 +11,7 @@ class HospitalPacientes(models.Model):
 
     #ATRIBUTOS
     _rec_name = 'nombre'
+    # campos para definir nombre y apellidos del paciente
     nombre = fields.Char("Nombre")
     apellidos = fields.Char("Apellidos")
     #Campo con HTML (Sanitizado) donde se guardan los síntomas

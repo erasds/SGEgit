@@ -11,7 +11,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <!-- Menu item -->
     <menuitem name="Hospital" id="hospital_base_menu" />
     <menuitem name="Medicos" id="hospital_medicos_menu" parent="hospital_base_menu" action="hospital_medicos_action"/>
 
