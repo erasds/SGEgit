@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='hospital_diagnosticos_action' model='ir.actions.act_window'>
+        <field name="name">Registro de diagnósticos</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">hospital.diagnosticos</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Hospital" id="hospital_base_menu" />
+    <menuitem name="Diagnósticos" id="hospital_diagnosticos_menu" parent="hospital_base_menu" action="hospital_diagnosticos_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="hospital_diagnosticos_view_form" model="ir.ui.view">
+        <field name="name">Registro de diagnósticos del Hospital</field>
+        <field name="model">hospital.diagnosticos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                    muchos a muchos se vea en la interfaz como etiquetas -->
+                    <field name="num_diagnostico"/>
+                    <field name="nombreMedico_ids" widget="many2many_tags"/>
+                    <field name="nombrePaciente_ids" widget="many2many_tags"/>
+                    <field name="diagnostico"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="hospital_diagnosticos_view_tree" model="ir.ui.view">
+        <field name="name">Registro de diagnósticos del Hospital</field>
+        <field name="model">hospital.diagnosticos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                muchos a muchos se vea en la interfaz como etiquetas -->
+                <field name="num_diagnostico"/>
+                <field name="nombreMedico_ids" widget="many2many_tags"/>
+                <field name="nombrePaciente_ids" widget="many2many_tags"/>
+                <field name="diagnostico"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="hospital_diagnosticos_view_search" model="ir.ui.view">
+        <field name="name">Registro de diagnósticos del Hospital</field>
+        <field name="model">hospital.diagnosticos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="num_diagnostico"/>
+                <field name="nombreMedico_ids"/>
+                <field name="nombrePaciente_ids"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

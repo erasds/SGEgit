@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='hospital_pacientes_action' model='ir.actions.act_window'>
+        <field name="name">Listado de pacientes</field>
+        <field name="res_model">hospital.pacientes</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Hospital" id="hospital_base_menu" />
+    <menuitem name="Pacientes" id="hospital_pacientes_menu" parent="hospital_base_menu" action="hospital_pacientes_action"/>
+
+    <!-- Vista formulario -->
+    <record id="hospital_pacientes_view_form" model="ir.ui.view">
+        <field name="name">Formulario para pacientes del Hospital</field>
+        <field name="model">hospital.pacientes</field>
+        <field name="arch" type="xml">
+            <form>
+               <group>
+                    <field name="nombre" />
+                    <field name="apellidos" />
+                    <field name="sintomas" />
+                </group>
+            </form>
+        </field>
+    </record>
+-->
+    <!-- Tree(list) View -->
+    <record id="hospital_pacientes_view_tree" model="ir.ui.view">
+        <field name="name">Lista de pacientes</field>
+        <field name="model">hospital.pacientes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre" />
+                <field name="apellidos" />
+                <field name="sintomas" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista busqueda-->
+    <record id="hospital_pacientes_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de pacientes del Hospital</field>
+        <field name="model">hospital.pacientes</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre" />
+                <field name="apellidos" />
+            </search>
+        </field>
+    </record>
+
+</odoo>

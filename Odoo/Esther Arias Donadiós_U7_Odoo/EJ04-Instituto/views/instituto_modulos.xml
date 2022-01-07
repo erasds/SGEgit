@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='instituto_modulos_action' model='ir.actions.act_window'>
+        <field name="name">Listado de modulos</field>
+        <field name="res_model">instituto.modulos</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Instituto" id="instituto_base_menu" />
+    <menuitem name="Módulos" id="instituto_modulos_menu" parent="instituto_base_menu" action="instituto_modulos_action"/>
+
+    <!-- Vista formulario -->
+    <record id="instituto_modulos_view_form" model="ir.ui.view">
+        <field name="name">Modulos del instituto</field>
+        <field name="model">instituto.modulos</field>
+        <field name="arch" type="xml">
+            <form>
+               <group>
+                    <field name="modulo" />
+                    <field name="ciclo_modulo" widget="many2many_tags"/>
+                    <field name="alumnos_modulo" widget="many2many_tags"/>
+                    <field name="profesores_modulo" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+-->
+    <!-- Tree(list) View -->
+    <record id="instituto_modulos_view_tree" model="ir.ui.view">
+        <field name="name">Lista de modulos</field>
+        <field name="model">instituto.modulos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="modulo" />
+                <field name="ciclo_modulo" widget="many2many_tags"/>
+                <field name="alumnos_modulo" widget="many2many_tags"/>
+                <field name="profesores_modulo" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista busqueda-->
+    <record id="instituto_modulos_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de módulos</field>
+        <field name="model">instituto.modulos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="modulo" />
+                <field name="ciclo_modulo" />
+            </search>
+        </field>
+    </record>
+
+</odoo>

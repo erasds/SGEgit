@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='biblioteca_prestamos_action' model='ir.actions.act_window'>
+        <field name="name">Registro de préstamos</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">biblioteca.prestamos</field>
+        <!-- Indicamos que los comics pueden verse en tree, kanban y form -->
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Mi biblioteca" id="biblioteca_base_menu" />
+    <menuitem name="Préstamos" id="biblioteca_prestamos_menu" parent="biblioteca_base_menu" action="biblioteca_prestamos_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="biblioteca_prestamos_view_form" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="comic_id"/>
+                    <field name="numeroEjemplar"/>
+                    <field name="socio_id"/>
+                </group>
+                <group>
+                    <field name="fecha_inicio_prestamo"/>
+                    <field name="fecha_fin_prestamo"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="biblioteca_prestamos_view_tree" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="comic_id"/>                      
+                <field name="socio_id"/>
+                <field name="fecha_inicio_prestamo"/>
+                <field name="fecha_fin_prestamo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="biblioteca_prestamos_view_kanban" model="ir.ui.view">
+        <field name="name">Registro de préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <!-- Agrupamos por el atributo "parent_id"-->
+            <kanban>
+                <!-- Indicamos que atributos usaremos al hacer la vista Kanban -->
+                <field name="comic_id"/>                      
+                <field name="socio_id"/>
+                <field name="fecha_inicio_prestamo"/>
+                <field name="fecha_fin_prestamo"/>
+                <!-- Plantilla QWeb para indicar como es la tarjeta Kanban-->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <h4><field name="comic_id"/></h4>                      
+                            <b><i><field name="socio_id"/></i></b>
+                            <p align='right'><field name="fecha_inicio_prestamo"/></p>
+                            <p align='right'><field name="fecha_fin_prestamo"/></p>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="biblioteca_prestamos_view_search" model="ir.ui.view">
+        <field name="name">Registro préstamos de la biblioteca</field>
+        <field name="model">biblioteca.prestamos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="comic_id"/>
+                <field name="numeroEjemplar"/>
+                <field name="socio_id"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

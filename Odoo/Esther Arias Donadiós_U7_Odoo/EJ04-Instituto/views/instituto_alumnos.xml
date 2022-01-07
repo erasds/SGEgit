@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='instituto_alumnos_action' model='ir.actions.act_window'>
+        <field name="name">Alumnos del instituto</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">instituto.alumnos</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Instituto" id="instituto_base_menu" />
+    <menuitem name="Alumnos" id="instituto_alumnos_menu" parent="instituto_base_menu" action="instituto_alumnos_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="instituto_alumnos_view_form" model="ir.ui.view">
+        <field name="name">Alumnos del instituto</field>
+        <field name="model">instituto.alumnos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                    muchos a muchos se vea en la interfaz como etiquetas -->
+                    <field name="nombre_alumno" />
+                    <field name="apellidos_alumno" />
+                    <field name="modulos_alumno" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="instituto_alumnos_view_tree" model="ir.ui.view">
+        <field name="name">Lista de alumnos del instituto</field>
+        <field name="model">instituto.alumnos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Utilizamos el Widget "many2many_tags" para que la relación
+                muchos a muchos se vea en la interfaz como etiquetas -->
+                <field name="nombre_alumno" />
+                <field name="apellidos_alumno" />
+                <field name="modulos_alumno" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="instituto_alumnos_view_search" model="ir.ui.view">
+        <field name="name">Alumnos del instituto</field>
+        <field name="model">instituto.alumnos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre_alumno" />
+                <field name="apellidos_alumno" />
+                <field name="modulos_alumno"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

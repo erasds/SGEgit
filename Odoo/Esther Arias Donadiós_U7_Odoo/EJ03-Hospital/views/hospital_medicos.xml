@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='hospital_medicos_action' model='ir.actions.act_window'>
+        <field name="name">Médicos del Hospital</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">hospital.medicos</field>
+        <!-- Indicamos que los medicos pueden verse en tree para el listado,
+            y en form para la creación/edición -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Hospital" id="hospital_base_menu" />
+    <menuitem name="Medicos" id="hospital_medicos_menu" parent="hospital_base_menu" action="hospital_medicos_action"/>
+
+    <!-- Definición de la Vista formulario -->
+    <record id="hospital_medicos_view_form" model="ir.ui.view">
+        <field name="name">Formulario de Medicos del Hospital</field>
+        <field name="model">hospital.medicos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="nColegiado"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista Tree -->
+    <record id="hospital_medicos_view_tree" model="ir.ui.view">
+        <field name="name">Lista de médicos del Hospital</field>
+        <field name="model">hospital.medicos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="nColegiado"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="hospital_medicos_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de médicos del Hospital</field>
+        <field name="model">hospital.medicos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="nColegiado"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

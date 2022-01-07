@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='biblioteca_socio_action' model='ir.actions.act_window'>
+        <field name="name">Listado de socios</field>
+        <field name="res_model">biblioteca.socios</field>
+        <!-- Indicamos que este modelo se puede ver en kanban, tree y form -->
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <!-- Menú item -->
+    <menuitem name="Mi biblioteca" id="biblioteca_base_menu" />
+    <menuitem name="Socios" id="biblioteca_socios_menu" parent="biblioteca_base_menu" action="biblioteca_socio_action"/>
+
+    <!-- Vista formulario -->
+    
+    <record id="biblioteca_socio_view_form" model="ir.ui.view">
+        <field name="name">Formulario para socios de biblioteca</field>
+        <field name="model">biblioteca.socios</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="id" />
+                        <field name="nombre_ids" />
+                        <field name="apellido" />
+                    </group>
+                    <group>
+                        <field name="foto" widget="image" class="oe_avatar"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="biblioteca_socio_view_tree" model="ir.ui.view">
+        <field name="name">Lista de Socios</field>
+        <field name="model">biblioteca.socios</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id" />
+                <field name="nombre_ids" />
+                <field name="apellido" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="biblioteca_socio_view_kanban" model="ir.ui.view">
+        <field name="name">Lista de Socios</field>
+        <field name="model">biblioteca.socios</field>
+        <field name="arch" type="xml">
+            <!-- Agrupamos por el atributo "parent_id"-->
+            <kanban>
+                <!-- Indicamos que atributos usaremos al hacer la vista Kanban -->
+
+                <field name="id" />
+                <field name="nombre_ids" />
+                <field name="apellido" />               
+                <field name="foto" />
+
+                <!-- Plantilla QWeb para indicar como es la tarjeta Kanban-->
+                <templates>
+                    <xpath expr="//head" position="inside">
+                        <link rel='stylesheet' href="/EJ02-ComicsEsther/static/src/css"/>
+                    </xpath>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div class="card">
+                                <img alt="Avatar" t-att-src="kanban_image('biblioteca.socios', 'foto', record.id.raw_value)" />
+                                <div class="container">
+                                    <h4>
+                                        <b><field name="nombre_ids" /> <field name="apellido" /></b>
+                                    </h4>
+                                    <p><field name="id" /></p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista busqueda-->
+    <record id="biblioteca_socio_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de Socio por nombre</field>
+        <field name="model">biblioteca.socios</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="id" />
+                <field name="nombre_ids" />
+                <field name="apellido" />
+            </search>
+        </field>
+    </record>
+
+</odoo>
