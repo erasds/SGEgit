@@ -117,27 +117,4 @@
          </field>
      </record>
 
-    <!-- Generamos un informe para cada partido que muestre el resultado en un pdf -->
-    <report
-        id="report_partido"
-        model="liga.partido"
-        string="Resultado del partido"
-        name="liga.report_partido_view"
-        file="liga.report_partido"
-        report_type="qweb-pdf" />
-    <template id="report_partido_view">
-        <t t-call="report.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="report.external_layout">
-                    <div class="page">
-                        <h2 t-field="doc.name"/>
-                        <p><span t-field="doc.equipo_casa"/> vs <span t-field="doc.equipo_fuera"/></p>
-                        <h3>Resultado:</h3>
-                        <h2><span t-field="doc.goles_casa"/> - <span t-field="doc.goles_fuera"/></h2>
-                    </div>
-                </t>
-            </t>
-        </t>
-    </template>
-
 </odoo>
