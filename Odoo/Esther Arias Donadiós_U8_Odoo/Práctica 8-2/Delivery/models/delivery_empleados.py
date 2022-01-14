@@ -2,7 +2,6 @@
 from odoo import models, fields
 
 
-
 #Definimos modelo Delivery Empleados, que almacenará información de los empleados
 class DeliveryEmpleados(models.Model):
 
@@ -28,7 +27,7 @@ class DeliveryEmpleados(models.Model):
     # teléfono del empleado
     telf = fields.Integer("Teléfono")
     # carnet del empleado donde podemos seleccionar entre varias opciones
-    carnet = fields.Selection([
+    carnet = fields.Selection(selection=[
         ('moto', 'Carnet de moto'),
         ('furgoneta', 'Carnet de furgoneta'),
         ('ambos', 'Carnet de moto y furgoneta'),

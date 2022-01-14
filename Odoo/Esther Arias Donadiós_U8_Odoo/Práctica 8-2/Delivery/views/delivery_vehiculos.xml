@@ -42,7 +42,6 @@
                 <field name="tipo" />
                 <field name="modelo" />
                 <field name="matricula" />
-                <field name="foto" widget="image" class="oe_avatar" />
                 <field name="descripcion" />
             </tree>
         </field>

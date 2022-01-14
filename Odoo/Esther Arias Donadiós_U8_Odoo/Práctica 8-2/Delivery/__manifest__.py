@@ -21,16 +21,18 @@
         'security/ir.model.access.csv',
 
         # Aqui indicamos las diferentes vistas de los modelos
-        'views/delivery_repartos.xml',
-        'views/delivery_vehiculos.xml',
+        'views/delivery_empleados.xml',
         'views/delivery_clientes.xml',
-        'views/delivery_empleados.xml'
+        'views/delivery_vehiculos.xml',
+        'views/delivery_repartos.xml'
+        
+        
+        
         
         # Vista a los informes
 
         # Añadimos un Wizard para introducir equipos
 
-        # Añadimos un Wizard para introducir partidos
-        
+        # Añadimos un Wizard para introducir partidos   
     ],
 }

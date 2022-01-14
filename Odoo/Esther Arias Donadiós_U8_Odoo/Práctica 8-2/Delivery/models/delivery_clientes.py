@@ -23,7 +23,7 @@ class DeliveryClientes(models.Model):
     # apellidos del cliente
     apellidos = fields.Char("Apellidos")
     # dni del cliente, que debe ser único
-    dni = fields.Integer("DNI")
+    dni = fields.Char("DNI")
     # teléfono del cliente
     telf = fields.Integer("Teléfono")
     

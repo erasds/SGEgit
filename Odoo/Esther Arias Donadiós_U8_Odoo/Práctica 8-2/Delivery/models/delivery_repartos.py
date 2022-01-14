@@ -34,8 +34,8 @@ class DeliveryRepartos(models.Model):
     # fecha de retorno del vehículo de reparto
     f_retorno = fields.Date("Fecha de retorno")
 
-    km = fields.Integer("Kilómetros del reparto")
-    kg = fields.Integer("Peso del paquete")
+    km = fields.Float("Kilómetros del reparto")
+    kg = fields.Float("Peso del paquete")
     volumen = fields.Char("Medidas del paquete")
     urgencia = fields.Selection(selection=[
         ('organos', 'Órganos humanos'),
@@ -66,11 +66,6 @@ class DeliveryRepartos(models.Model):
     receptor = fields.Many2one('delivery.clientes', string="Cliente receptor")
 
     # RESTRICCIONES
-
-    #Constraints de SQL del modelo, para controlar que la matrícula sea única
-    _sql_constraints = [
-        ('codigo_uniq', 'UNIQUE (codigo)', 'El código de los repartos debe ser único')
-    ]
 
     """ Faltan restricciones de repartidores y vehículos !!!! """
     # Definimos una función para controlar las condiciones de las fechas

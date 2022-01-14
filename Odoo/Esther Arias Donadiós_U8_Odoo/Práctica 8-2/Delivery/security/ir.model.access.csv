@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acl_clientes,delivery.clientes_default,model_delivery_clientes,,1,1,1,1
 acl_empleados,delivery.empleados_default,model_delivery_empleados,,1,1,1,1
-acl_repartos,delivery.repartos_default,model_delivery_repartos,,1,1,1,1
+acl_clientes,delivery.clientes_default,model_delivery_clientes,,1,1,1,1
 acl_vehiculos,delivery.vehiculos_default,model_delivery_vehiculos,,1,1,1,1
+acl_repartos,delivery.repartos_default,model_delivery_repartos,,1,1,1,1

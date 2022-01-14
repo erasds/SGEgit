@@ -45,7 +45,6 @@
                 <field name="dni" />
                 <field name="telf" />
                 <field name="carnet" />
-                <field name="foto" widget="image" class="oe_avatar" />
             </tree>
         </field>
     </record>
