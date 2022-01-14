@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Delivery",  # Titulo del módulo
-    'summary': "Gestionar una empresa de transporte",  # Resumen de la funcionaliadad
+    'summary': "Gestionar una empresa de transporte",  # Resumen de la funcionalidad
     'description': """
     Gestor de una Empresa de Transporte
     ==============
@@ -22,9 +22,9 @@
 
         # Aqui indicamos las diferentes vistas de los modelos
         'views/delivery_repartos.xml',
-        'views/delivery_equipo_vehiculos.xml',
-        'views/delivery_equipo_clientes.xml',
-        'views/delivery_equipo_empleados.xml'
+        'views/delivery_vehiculos.xml',
+        'views/delivery_clientes.xml',
+        'views/delivery_empleados.xml'
         
         # Vista a los informes
 
