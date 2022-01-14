@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='delivery_repartos_action' model='ir.actions.act_window'>
+        <field name="name">Repartos de la empresa</field>
+        <field name="res_model">delivery.repartos</field>
+        <!-- Indicamos que este modelo se puede ver en tree y form -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Colgamos el modelo del menú superior -->
+    <menuitem name="Delivery" id="delivery_base_menu" />
+    <menuitem name="Repartos" id="delivery_repartos_menu" parent="delivery_base_menu" action="delivery_repartos_action" />
+
+    <!-- Definimos el formato del código del reparto -->
+    <record id="codigo_reparto_id" model="ir.sequence">
+        <field name="name">Autonumeración del código de reparto</field>
+        <field name="code">delivery.repartos.codigo</field>
+        <field name="active">TRUE</field>
+        <field name="prefix">DN</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <!-- Vista formulario -->
+    <record id="delivery_repartos_view_form" model="ir.ui.view">
+        <field name="name">Formulario de repartos</field>
+        <field name="model">delivery.repartos</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="codigo" />
+                    <field name="f_inicio" />
+                    <field name="f_entrega" />
+                    <field name="f_retorno" />
+                    <field name="km" />
+                    <field name="kg" />
+                    <field name="volumen" />
+                    <field name="urgencia" />
+                    <field name="observaciones" />
+                    <field name="estado" />
+                    <field name="repartidor" widget="many2many_tags" />
+                    <field name="vehiculo" widget="many2many_tags" />
+                    <field name="emisor" widget="many2many_tags" />
+                    <field name="receptor" widget="many2many_tags" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="delivery_repartos_view_tree" model="ir.ui.view">
+        <field name="name">Lista de repartos</field>
+        <field name="model">delivery.repartos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="codigo" />
+                <field name="f_inicio" />
+                <field name="f_entrega" />
+                <field name="f_retorno" />
+                <field name="km" />
+                <field name="kg" />
+                <field name="volumen" />
+                <field name="urgencia" />
+                <field name="observaciones" />
+                <field name="estado" />
+                <field name="repartidor" widget="many2many_tags" />
+                <field name="vehiculo" widget="many2many_tags" />
+                <field name="emisor" widget="many2many_tags" />
+                <field name="receptor" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista búsqueda-->
+    <record id="delivery_repartos_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de repartos</field>
+        <field name="model">delivery.repartos</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="codigo" />
+                <field name="urgencia" />
+                <field name="estado" />
+            </search>
+        </field>
+    </record>
+
+</odoo>

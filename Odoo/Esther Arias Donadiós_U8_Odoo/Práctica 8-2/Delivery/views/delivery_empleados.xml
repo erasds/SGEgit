@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='delivery_empleados_action' model='ir.actions.act_window'>
+        <field name="name">Empleados de la empresa</field>
+        <field name="res_model">delivery.empleados</field>
+        <!-- Indicamos que este modelo se puede ver en kanban, tree y form -->
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <!-- Colgamos el modelo del menú superior -->
+    <menuitem name="Delivery" id="delivery_base_menu" />
+    <menuitem name="Empleados" id="delivery_empleados_menu" parent="delivery_base_menu" action="delivery_empleados_action" />
+
+    <!-- Vista formulario -->
+    <record id="delivery_empleados_view_form" model="ir.ui.view">
+        <field name="name">Formulario de empleados</field>
+        <field name="model">delivery.empleados</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="nombre" />
+                        <field name="apellidos" />
+                        <field name="dni" />
+                        <field name="telf" />
+                        <field name="carnet" />
+                    </group>
+                    <group>
+                        <field name="foto" widget="image" class="oe_avatar" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="delivery_empleados_view_tree" model="ir.ui.view">
+        <field name="name">Lista de empleados</field>
+        <field name="model">delivery.empleados</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre" />
+                <field name="apellidos" />
+                <field name="dni" />
+                <field name="telf" />
+                <field name="carnet" />
+                <field name="foto" widget="image" class="oe_avatar" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista búsqueda-->
+    <record id="delivery_empleados_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de empleados</field>
+        <field name="model">delivery.empleados</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre" />
+                <field name="apellidos" />
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Vista Kanban -->
+    <record id="delivery_empleados_view_kanban" model="ir.ui.view">
+        <field name="name">Lista de empleados</field>
+        <field name="model">delivery.empleados</field>
+        <field name="arch" type="xml">
+            <!-- Agrupamos por el atributo "parent_id"-->
+            <kanban>
+                <!-- Indicamos qué atributos usaremos al hacer la vista Kanban -->
+                <field name="nombre" />
+                <field name="apellidos" />
+                <field name="dni" />
+                <field name="telf" />
+                <field name="carnet" />
+                <!-- Plantilla QWeb para indicar cómo es la tarjeta Kanban-->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_image_inner_pic">
+                            <field name="nombre" />
+                            <field name="apellidos" />
+                            <img alt="Avatar" t-att-src="kanban_image('delivery.empleados', 'foto', record.id.raw_value)" />
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>
