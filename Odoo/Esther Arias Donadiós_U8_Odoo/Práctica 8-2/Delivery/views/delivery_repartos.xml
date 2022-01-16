@@ -34,6 +34,8 @@
                     <field name="f_inicio" />
                     <field name="f_entrega" />
                     <field name="f_retorno" />
+                    <field name="pendientes" />
+                    <field name="realizados" />
                     <field name="km" />
                     <field name="kg" />
                     <field name="volumen" />
@@ -59,6 +61,8 @@
                 <field name="f_inicio" />
                 <field name="f_entrega" />
                 <field name="f_retorno" />
+                <field name="pendientes" />
+                <field name="realizados" />
                 <field name="km" />
                 <field name="kg" />
                 <field name="volumen" />

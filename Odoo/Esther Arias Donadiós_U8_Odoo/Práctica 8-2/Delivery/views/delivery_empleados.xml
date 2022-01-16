@@ -45,6 +45,7 @@
                 <field name="dni" />
                 <field name="telf" />
                 <field name="carnet" />
+                <field name="realizados" />
             </tree>
         </field>
     </record>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Informe de repartos pendientes asociado a cada empleado 
+    (se genera al darle a imprimir desde la vista Form de un empleado) -->
+    <template id="report_pendientes_view">
+        <!-- Aquí la estructura a seguir -->
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <!-- Cabecera con el nombre y apellidos del empleado -->
+                        <h2 t-field="doc.nombre" /><h2 t-field="doc.apellidos" />
+                        <!-- Datos de los repartos pendientes -->
+                        <p>
+                            Repartos pendientes:
+                            <span t-field="doc.pendientes" />
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Realmente, este es el informe, lo de arriba es la plantilla que utilizará el informe -->
+    <report id="report_pendientes" model="delivery.empleados" string="Informe de repartos pendientes" name="Delivery.report_pendientes_view" file="Delivery.report_pendientes_view" report_type="qweb-pdf" />
+
+
+</odoo>

@@ -26,13 +26,12 @@ class DeliveryRepartos(models.Model):
     codigo = fields.Char('Código del reparto', default='/')
 
 
-    """ Falta la hora!!! """
-    # fecha de inicio del reparto
-    f_inicio = fields.Date("Fecha de inicio")
+    # fecha y hora de inicio del reparto
+    f_inicio = fields.Datetime(default= lambda s: fields.Datetime.now(), string="Fecha de inicio")
     # fecha de entrega del reparto
-    f_entrega = fields.Date("Fecha de entrega")
+    f_entrega = fields.Datetime("Fecha de entrega")
     # fecha de retorno del vehículo de reparto
-    f_retorno = fields.Date("Fecha de retorno")
+    f_retorno = fields.Datetime("Fecha de retorno")
 
     km = fields.Float("Kilómetros del reparto")
     kg = fields.Float("Peso del paquete")
@@ -50,6 +49,10 @@ class DeliveryRepartos(models.Model):
         ('enviado', 'En camino'),
         ('entregado', 'Entregado')
     ], string="Estado del reparto", default='procesado')
+
+    # Añadimos unos campos para clasificar los pedidos como pendientes o realizados
+    pendientes = fields.Boolean(compute="_value_pendientes", store=True)
+    realizados = fields.Boolean(compute="_value_realizados", store=True)
     
     # repartidor, a elegir entre los empleados de la empresa con carnet
     repartidor = fields.Many2one('delivery.empleados', string="Repartidor", 
@@ -95,6 +98,32 @@ class DeliveryRepartos(models.Model):
 
 
     # MÉTODOS
+
+    @api.depends('f_retorno')
+    #Función para calcular el valor de pendientes.
+    def _value_pendientes(self):
+        # Almacenamos la fecha actual en la variable today
+        today = fields.Datetime.now()
+        #Para cada registro...
+        for record in self:
+            # Si la fecha actual es anterior a la fecha de retorno es que está pendiente
+            if record.f_retorno > today:
+                record.pendientes = True
+            else:
+                record.pendientes = False
+
+    @api.depends('f_retorno')
+    #Función para calcular el valor de realizados.
+    def _value_realizados(self):
+        # Almacenamos la fecha actual en la variable today
+        today = fields.Datetime.now()
+        #Para cada registro...
+        for record in self:
+            # Si la fecha actual es posterior a la fecha de retorno es que está realizado
+            if record.f_retorno < today:
+                record.pendientes = True
+            else:
+                record.pendientes = False
 
     # on create method
     @api.model

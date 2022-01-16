@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id='delivery_repartos_wizard_form' model='ir.ui.view'>
+    <field name='name'>Wizard para crear datos de un reparto</field>
+    <field name='model'>delivery.repartos.wizard</field>
+    <field name='arch' type='xml'>
+        <form string="Introducir datos de un reparto">
+            <sheet>
+                <group>
+                    <field name='codigo'/>
+                    <field name='repartidor' widget="many2many_tags"/>
+                    <field name='vehiculo' widget="many2many_tags"/>
+                    <field name='emisor' widget="many2many_tags"/>
+                    <field name='receptor' widget="many2many_tags"/>
+                </group>
+                <group>
+                    <field name='observaciones'/>
+                </group>
+            </sheet>
+            <footer>
+                <button string='Añadir' name='add_delivery_repartos' class='btn-primary' type='object'/>
+                <button string='Cancel' class='btn-default' special='cancel'/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<!-- Definimos el formato del código del reparto -->
+<record id="codigo_reparto_id" model="ir.sequence">
+    <field name="name">Autonumeración del código de reparto</field>
+    <field name="code">delivery.repartos.codigo</field>
+    <field name="active">TRUE</field>
+    <field name="prefix">DN</field>
+    <field name="padding">5</field>
+    <field name="number_next">1</field>
+    <field name="number_increment">1</field>
+</record>
+
+<act_window id="action_wizard_delivery_repartos" name="Añadir repartos" res_model="delivery.repartos.wizard" view_mode="form" target="new" />
+<menuitem id="menu_wizard_delivery_repartos" parent="delivery_base_menu" action="action_wizard_delivery_repartos" sequence="20" />
+
+</odoo>

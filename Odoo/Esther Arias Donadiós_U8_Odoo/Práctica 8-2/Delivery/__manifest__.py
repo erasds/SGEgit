@@ -24,15 +24,12 @@
         'views/delivery_empleados.xml',
         'views/delivery_clientes.xml',
         'views/delivery_vehiculos.xml',
-        'views/delivery_repartos.xml'
-        
-        
-        
+        'views/delivery_repartos.xml',
         
         # Vista a los informes
+        'report/delivery_pendientes_report.xml',
 
-        # Añadimos un Wizard para introducir equipos
-
-        # Añadimos un Wizard para introducir partidos   
+        # Añadimos un Wizard para crear repartos
+        'wizard/delivery_repartos_wizard.xml' 
     ],
 }
