@@ -8,7 +8,7 @@ class ControladorWebEstadoRepartos(http.Controller):
     #Devolvera texto que estará en formato html
     #Se puede probar accediendo a http://localhost:8069/seguimiento/<codigo>
     @http.route('/seguimiento/<codigo>', auth='user', type='http')
-    def estado_repartos(self, codigo, **kw):
+    def estado_repartos(self, codigo, estado, **kw):
         # Primero obtenemos los registros de repartos
         repartos = request.env['liga.repartos'].sudo().search([])
         #Recorro los repartos

@@ -36,12 +36,15 @@ class DeliveryEmpleados(models.Model):
     #Dato binario, para guardar un binario (en la vista indicaremos que es una imagen) con la foto del empleado
     foto = fields.Image('Avatar', max_width=200,max_height=200)
 
-    # Almacenamos los repartos pendientes y realizados de cada empleado
-    pendientes = fields.One2many('delivery.repartos', string="Repartos pendientes", 
+    # Almacenamos los repartos pendientes, realizados, y en proceso de cada empleado
+    pendientes = fields.One2many('delivery.repartos', 'pendientes', string="Repartos pendientes", 
     domain=[('pendientes', '=', True),
             ('repartidor', '=', 'nombre')])
-    realizados = fields.One2many('delivery.repartos', string="Repartos realizados", 
+    realizados = fields.One2many('delivery.repartos', 'realizados', string="Repartos realizados", 
     domain=[('realizados', '=', True),
+            ('repartidor', '=', 'nombre')])
+    en_proceso = fields.Many2one('delivery.repartos', string="Repartos en proceso",
+    domain=[('en_proceso', '=', True),
             ('repartidor', '=', 'nombre')])
 
     #Constraints de SQL del modelo, para controlar que el dni sea único

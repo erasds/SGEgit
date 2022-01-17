@@ -13,15 +13,16 @@
     <menuitem name="Repartos" id="delivery_repartos_menu" parent="delivery_base_menu" action="delivery_repartos_action" />
 
     <!-- Definimos el formato del código del reparto -->
-    <record id="codigo_reparto_id" model="ir.sequence">
-        <field name="name">Autonumeración del código de reparto</field>
-        <field name="code">delivery.repartos.codigo</field>
-        <field name="active">TRUE</field>
-        <field name="prefix">DN</field>
-        <field name="padding">5</field>
-        <field name="number_next">1</field>
-        <field name="number_increment">1</field>
-    </record>
+    <data noupdate="1">
+        <record id="sequence_id" model="ir.sequence">
+            <field name="name">Autonumeración del código de reparto</field>
+            <field name="code">delivery.repartos</field>
+            <field name="prefix"></field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
 
     <!-- Vista formulario -->
     <record id="delivery_repartos_view_form" model="ir.ui.view">
