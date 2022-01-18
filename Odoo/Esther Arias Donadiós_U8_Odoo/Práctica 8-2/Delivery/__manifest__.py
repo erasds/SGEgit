@@ -30,6 +30,6 @@
         'report/delivery_pendientes_report.xml',
 
         # Añadimos un Wizard para crear repartos
-        'wizard/delivery_repartos_wizard.xml' 
+        'wizard/delivery_repartos_wizard.xml'
     ],
 }

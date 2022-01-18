@@ -7,7 +7,8 @@ from odoo import models, fields, api
 class DeliveryRepartosWizard(models.TransientModel):
     _name = 'delivery.repartos.wizard'
     #Campos del modelo que usaremos en el Wizard
-    codigo = fields.Char('Código del reparto', default='/')
+    codigo = fields.Integer(string="Código del reparto", default=lambda self:
+    self.env['ir.sequence'].next_by_code('delivery.repartos.wizard'))
     observaciones = fields.Html('Descripción', sanitize=True, strip_style=False)
     repartidor = fields.Many2one('delivery.empleados', string="Repartidor", 
     domain=[('moto', '=', True),
@@ -35,24 +36,3 @@ class DeliveryRepartosWizard(models.TransientModel):
                 'emisor': wiz.emisor,
                 'receptor': wiz.receptor
             })
-
-    # MÉTODOS
-
-    # on create method
-    @api.model
-    def create(self, vals):
-        obj = super(DeliveryRepartosWizard, self).create(vals)
-        if obj.codigo == '/':
-            number = self.env['ir.sequence'].get('delivery.repartos.wizard.codigo') or '/'
-            obj.write({'codigo': number})
-        return obj
-        
-    
-    # on button click event
-    @api.one
-    def submit_application(self):
-        if self.codigo == '/':
-            sequence_id = self.env['ir.sequence'].search([('code', '=', 'delivery.repartos.wizard.codigo')])
-            sequence_pool = self.env['ir.sequence']
-            codigo = sequence_pool.sudo().get_id(sequence_id.id)
-            self.write({'codigo': codigo})

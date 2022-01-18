@@ -22,7 +22,7 @@
                     <group>
                         <field name="tipo" />
                         <field name="modelo" />
-                        <field name="matrícula" />
+                        <field name="matricula" />
                     </group>
                     <group>
                         <field name="foto" widget="image" class="oe_avatar" />

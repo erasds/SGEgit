@@ -14,7 +14,7 @@ class DeliveryVehiculos(models.Model):
     _description = 'Vehículos de la empresa'
 
     #Parámetros de ordenación por defecto
-    _order = 'tipo', 'modelo'
+    _order = 'tipo, modelo'
 
     #ATRIBUTOS
 

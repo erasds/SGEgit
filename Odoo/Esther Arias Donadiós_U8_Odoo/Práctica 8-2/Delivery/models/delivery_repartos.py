@@ -14,7 +14,7 @@ class DeliveryRepartos(models.Model):
     _description = 'Repartos de la empresa'
 
     #Parámetros de ordenación por defecto
-    _order = 'f_entrega', 'urgencia'
+    _order = 'f_entrega, urgencia'
 
     #ATRIBUTOS
 
@@ -70,13 +70,11 @@ class DeliveryRepartos(models.Model):
 
     # RESTRICCIONES
 
-    """ Faltan restricciones de repartidores y vehículos !!!! """
     # Definimos una función para controlar las condiciones de las fechas
     @api.constrains('f_inicio', 'f_entrega', 'f_retorno')
     def _check_reparto_date(self):
         # Recorremos el modelo
         for record in self:
-            """ Dejar solo el 2o if??. REVISAR!!! """
             # comprobamos que la fecha de inicio no sea posterior a la fecha de fin del reparto
             if record.f_inicio > record.f_retorno:
                 raise models.ValidationError('La fecha de inicio del reparto no puede ser posterior a la fecha de retorno')
@@ -97,9 +95,6 @@ class DeliveryRepartos(models.Model):
                 raise models.ValidationError('Los repartos de más de 10 km no se pueden realizar en bicicleta')
 
 
-    """ si un repartidor ya está en reparto no puedes volver a seleccionarlo... """
-    """ si el vehiculo ya está en reparto no puedes volver a seleccionarlo... """
-
 
     # MÉTODOS
 
@@ -110,9 +105,13 @@ class DeliveryRepartos(models.Model):
         today = fields.Datetime.now()
         #Para cada registro...
         for record in self:
-            # Si la fecha actual es anterior a la fecha de inicio es que está pendiente
-            if record.f_inicio > today:
-                record.pendientes = True
+            # Si el campo f_inicio no está vacío
+            if record.f_inicio is not None:
+                # Si la fecha actual es anterior a la fecha de inicio es que está pendiente
+                if record.f_inicio > today:
+                    record.pendientes = True
+                else:
+                    record.pendientes = False
             else:
                 record.pendientes = False
 
@@ -123,9 +122,13 @@ class DeliveryRepartos(models.Model):
         today = fields.Datetime.now()
         #Para cada registro...
         for record in self:
-            # Si la fecha actual es posterior a la fecha de retorno es que está realizado
-            if record.f_retorno < today:
-                record.realizados = True
+            # Si el campo f_retorno no está vacío
+            if record.f_retorno is not None:
+                # Si la fecha actual es posterior a la fecha de retorno es que está realizado
+                if record.f_retorno < today:
+                    record.realizados = True
+                else:
+                    record.realizados = False
             else:
                 record.realizados = False
 
@@ -136,8 +139,12 @@ class DeliveryRepartos(models.Model):
         today = fields.Datetime.now()
         #Para cada registro...
         for record in self:
-            # Si la fecha actual es posterior a la fecha de inicio y anterior a la de retorno es que está en proceso
-            if record.f_inicio < today < record.f_retorno:
-                record.en_proceso = True
+            # Si los campos f_inicio y f_retorno no están vacíos
+            if record.f_inicio is not None and record.f_retorno is not None:
+                # Si la fecha actual es posterior a la fecha de inicio y anterior a la de retorno es que está en proceso
+                if record.f_inicio < today < record.f_retorno:
+                    record.en_proceso = True
+                else:
+                    record.en_proceso = False
             else:
                 record.en_proceso = False

@@ -11,7 +11,7 @@ class DeliveryEmpleados(models.Model):
     _description = 'Empleados de la empresa'
 
     #Parámetros de ordenación por defecto
-    _order = 'nombre', 'apellidos'
+    _order = 'nombre, apellidos'
 
     #ATRIBUTOS
 

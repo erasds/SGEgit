@@ -74,20 +74,12 @@
                 <field name="vehiculo" widget="many2many_tags" />
                 <field name="emisor" widget="many2many_tags" />
                 <field name="receptor" widget="many2many_tags" />
+                <xpath expr="//tree" position="attributes">
+                    <attribute name='decoration-primary'>estado='procesado'</attribute>
+                    <attribute name='decoration-danger'>estado='enviado'</attribute>
+                    <attribute name='decoration-success'>estado='entregado'</attribute>
+                </xpath>
             </tree>
-        </field>
-    </record>
-
-    <!-- Tree view. Reemplazamos los colores según el estado del reparto -->
-    <record id="delivery_repartos_view_tree_inherit1" model="ir.ui.view">
-        <field name="name">delivery.repartos.view.tree.inherit1</field>
-        <field name="model">delivery.repartos</field>
-        <field name="type">tree</field>
-        <field name="inherit_id" ref="delivery.repartos_view_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//tree[@string='Estado']" position="attributes">
-                <attribute name="colors">orange:state=='procesado';red:state=='enviado';green:state=='entregado'</attribute>
-            </xpath>
         </field>
     </record>
 
